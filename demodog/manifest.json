@@ -1,0 +1,44 @@
+{
+    "background": {
+      "scripts": [
+      	"ext/background/router.js"
+      ],
+      "persistent": true
+    },
+    "browser_action": {
+      "default_icon": "img/logo.png",
+      "default_popup": "ext/popup/popup.html",
+      "default_title": "Demo Dog"
+    },
+    "content_scripts": [
+      {
+        "js": [
+          "ext/common/lib/jquery-1.12.3.min.js",
+          "ext/common/lib/bootstrap.min.js",
+          "ext/common/lib/jquery-ui.min.js",
+
+          "ext/common/route_watcher.js"
+        ],
+        "matches": [
+          "*://*.datadoghq.com/*"
+        ]
+      }
+    ],
+    "icons": {
+        "128": "img/logo.png"
+    },
+    "manifest_version": 2,
+    "name": "DemoDog",
+    "description": "Tailor demo environments to your needs using key:value JSON scripts",
+    "author": "Ryan Nutley",
+    "permissions": [
+    	"storage",
+    	"tabs",
+    	"*://*.datadoghq.com/*"
+    ],
+    "update_url": "http://0.0.0.0",
+    "version": "0.0.9",
+    "web_accessible_resources": [
+        "img/icon.png"
+    ]
+}
