@@ -1,0 +1,74 @@
+[{
+  "definition": {
+    "status": "done",
+    "autoscale": true,
+    "markers": [{
+      "dim": "y",
+      "min": 0.1,
+      "max": 0.15,
+      "value": "0.1 < y < 0.15",
+      "label": "Warning",
+      "type": "warning dashed"
+    }, {
+      "dim": "y",
+      "min": 0.15,
+      "max": null,
+      "value": "y > 0.15",
+      "label": "Danger",
+      "type": "error dashed"
+    }],
+    "viz": "timeseries",
+    "requests": [{
+      "q": "hour_before(avg:aws.elb.latency{$az} by {availability-zone})",
+      "aggregator": "avg",
+      "conditional_formats": [],
+      "type": "line"
+    }],
+    "events": [{
+      "q": "puppet ",
+      "tags_execution": "and"
+    }]
+  },
+  "title": "AWS ELB Web latency by AZ"
+}, {
+  "definition": {
+    "status": "done",
+    "autoscale": true,
+    "viz": "timeseries",
+    "requests": [{
+      "q": "sum:aws.elb.httpcode_elb_4xx{*}.as_count()",
+      "type": "bars",
+      "style": {
+        "palette": "warm",
+        "type": "solid",
+        "width": "normal"
+      },
+      "conditional_formats": [],
+      "aggregator": "avg"
+    }]
+  },
+  "title": "AWS ELB HTTP 4xx errors"
+}, {
+  "definition": {
+    "status": "done",
+    "autoscale": true,
+    "yaxis": {
+      "scale": "sqrt"
+    },
+    "viz": "timeseries",
+    "requests": [{
+      "q": "avg:aws.elb.httpcode_elb_5xx{*}.as_count(), avg:aws.elb.httpcode_elb_4xx{*}.as_count()",
+      "aggregator": "avg",
+      "conditional_formats": [],
+      "type": "bars",
+      "style": {
+        "palette": "warm"
+      }
+    }],
+    "events": [{
+      "q": "sources:alert,jenkins \"ReInvent\" ",
+      "tags_execution": "and"
+    }]
+  },
+  "title": "AWS ELB 4xx & 5xx"
+}]

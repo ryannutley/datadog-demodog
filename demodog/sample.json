@@ -51,26 +51,28 @@
     "sandwich" : "Misc."
   },
   "cloud_provider": {
-    "aws": "Amazon",
-    "gcp": "Google",
-    "azure": "Azure"
+    "aws": "HOLDME1",
+    "azure": "HOLDME2",
+    "HOLDME1": "Azure",
+    "HOLDME2": "Amazon",
+    "gcp": "Google"
   },
   "kafka_topic": {
-    "points-org3002": "Topic 1",
-    "points-org2": "Topic 2",
-    "points-mullet": "Topic 3",
-    "points.multi": "Topic 4",
-    "sketches": "Topic 5",
-    "spans.v1": "Topic 6",
-    "spans-org2.v1": "Topic 7",
+    "points-org3002": "Ingestion",
+    "points-org2": "Monitors",
+    "points-mullet": "Sandbox",
+    "points.multi": "Agent Pulse",
+    "sketches": "Indexing",
+    "spans.v1": "Spans",
+    "spans-org2.v1": "Signatures",
     "process_points": "Topic 8"
   },
   "kafka_cluster": {
-    "kafka-metrics-nov17": "Cluster 1",
-    "kafka-trace-1": "Cluster 2",
+    "kafka-metrics-nov17": "Metrics Aggregation",
+    "kafka-trace-1": "APM Tracing",
     "kafka-cold": "Cluster 3",
     "kafka-processes-1": "Cluster 4",
-    "general-kafka-1": "Cluster 5",
+    "general-kafka-1": "Log Aggregation",
     "kafka.apm-kafka-1": "Cluster 6"
   }
 }

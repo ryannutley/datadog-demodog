@@ -1,0 +1,53 @@
+[{
+  "definition": {
+    "viz": "timeseries",
+    "status": "done",
+    "requests": [{
+      "q": "avg:system.load.norm.1{name:cassandra-legacy} by {host}",
+      "aggregator": "avg",
+      "style": {
+        "width": "normal",
+        "palette": "dog_classic",
+        "type": "solid"
+      },
+      "type": "area",
+      "conditional_formats": []
+    }],
+    "autoscale": true,
+    "events": [{
+      "q": "pkb ",
+      "tags_execution": "and"
+    }]
+  },
+  "title": "Cassandra - System load by host"
+}, {
+  "definition": {
+    "viz": "toplist",
+    "status": "done",
+    "requests": [{
+      "q": "top(avg:cassandra.latency.count{*} by {host}, 10, 'mean', 'desc')",
+      "style": {
+        "palette": "dog_classic"
+      },
+      "conditional_formats": []
+    }],
+    "autoscale": true
+  },
+  "title": "95th perc. Latency by node"
+}, {
+  "definition": {
+    "viz": "timeseries",
+    "status": "done",
+    "requests": [{
+      "q": "outliers(avg:system.load.5{role:cassandra-legacy} by {host}, 'dbscan', 1.5)",
+      "aggregator": "avg",
+      "style": {
+        "palette": "orange"
+      },
+      "type": "line",
+      "conditional_formats": []
+    }],
+    "autoscale": true
+  },
+  "title": "Avg of system.load over role:cassandra by host"
+}]

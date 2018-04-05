@@ -1,0 +1,132 @@
+[{
+  "definition": {
+    "viz": "toplist",
+    "requests": [{
+      "q": "top(avg:dd.dogweb.latency.avg{*} by {page}, 10, 'mean', 'desc')",
+      "style": {
+        "palette": "dog_classic"
+      },
+      "conditional_formats": [{
+        "palette": "white_on_red",
+        "value": 1000,
+        "comparator": ">"
+      }, {
+        "palette": "white_on_yellow",
+        "value": 900,
+        "comparator": ">"
+      }]
+    }]
+  },
+  "title": "10 Slowest Web Pages"
+}, {
+  "definition": {
+    "viz": "timeseries",
+    "requests": [{
+      "q": "sum:dd.dogweb.latency.count{name:mcnulty-web}.as_count()",
+      "aggregator": "avg",
+      "conditional_formats": [],
+      "type": "bars",
+      "style": {
+        "palette": "cool"
+      }
+    }],
+    "autoscale": true
+  },
+  "title": "HTTP Requests"
+}, {
+  "definition": {
+    "viz": "timeseries",
+    "requests": [{
+      "q": "avg:dd.dogweb.latency.no_tags.median{*} by {availability-zone,host}",
+      "aggregator": "avg",
+      "conditional_formats": [],
+      "type": "line"
+    }, {
+      "q": "avg:dd.dogweb.latency.no_tags.95percentile{*} by {availability-zone}",
+      "aggregator": "avg",
+      "conditional_formats": [],
+      "type": "line"
+    }],
+    "markers": [{
+      "dim": "y",
+      "min": 1300,
+      "max": 1600,
+      "value": "1300 < y < 1600",
+      "label": "Warning",
+      "type": "warning dashed"
+    }, {
+      "dim": "y",
+      "min": 1600,
+      "max": null,
+      "value": "y > 1600",
+      "label": "Too slow",
+      "type": "error dashed"
+    }]
+  },
+  "title": "Web latency by AZ (95th perc. and median)"
+}, {
+  "definition": {
+    "status": "done",
+    "autoscale": true,
+    "markers": [{
+      "dim": "y",
+      "type": "error dashed",
+      "val": 3,
+      "value": "y = 3"
+    }],
+    "viz": "timeseries",
+    "requests": [{
+      "q": "avg:system.load.1{role:cassandra-legacy} by {availability-zone}",
+      "aggregator": "avg",
+      "style": {
+        "width": "normal",
+        "palette": "dog_classic",
+        "type": "solid"
+      },
+      "type": "line",
+      "conditional_formats": []
+    }],
+    "events": [{
+      "q": "deployment ",
+      "tags_execution": "and"
+    }]
+  },
+  "title": "Avg system load"
+}, {
+  "definition": {
+    "viz": "timeseries",
+    "status": "done",
+    "requests": [{
+      "q": "forecast(avg:dd.synth.test.sawtooth{*}, 'seasonal', 1)",
+      "aggregator": "avg",
+      "style": {
+        "width": "normal",
+        "palette": "dog_classic",
+        "type": "solid"
+      },
+      "type": "line",
+      "conditional_formats": []
+    }],
+    "autoscale": true
+  },
+  "title": "Web Traffic Forecast"
+}, {
+  "definition": {
+    "viz": "timeseries",
+    "status": "done",
+    "requests": [{
+      "q": "hour_before(avg:aws.ec2.cpuutilization{role:mcnulty-query} by {host})",
+      "aggregator": "avg",
+      "conditional_formats": [],
+      "type": "area",
+      "style": {
+        "palette": "cool"
+      }
+    }],
+    "autoscale": true,
+    "events": [{
+      "q": "sources:myapps tags:project:dogweb "
+    }]
+  },
+  "title": "Web Workers CPU Utilization by host"
+}]

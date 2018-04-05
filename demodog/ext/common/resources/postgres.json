@@ -1,0 +1,33 @@
+[{
+  "definition": {
+    "viz": "timeseries",
+    "requests": [{
+      "q": "avg:postgresql.connections{*} by {host}",
+      "conditional_formats": [],
+      "type": "area"
+    }],
+    "autoscale": true,
+    "events": [{
+      "q": "ansible fail ",
+      "tags_execution": "and"
+    }]
+  },
+  "title": "Avg of postgresql.connections over * by host"
+},{
+  "definition": {
+    "viz": "timeseries",
+    "requests": [{
+      "q": "sum:postgresql.connections{role:dogweb-backend-master}",
+      "aggregator": "avg",
+      "conditional_formats": [],
+      "type": "line"
+    }],
+    "markers": [{
+      "label": "Too many connections",
+      "type": "error dashed",
+      "value": "y > 100",
+      "min": "100"
+    }]
+  },
+  "title": "Postgres Master connections"
+}]

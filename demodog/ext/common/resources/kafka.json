@@ -1,0 +1,154 @@
+[{
+  "definition": {
+    "viz": "timeseries",
+    "requests": [
+      {
+        "q": "avg:zookeeper.latency.max{*}",
+        "type": "line",
+        "style": {
+          "palette": "dog_classic",
+          "type": "solid",
+          "width": "normal"
+        },
+        "conditional_formats": [],
+        "aggregator": "avg"
+      }
+    ],
+    "autoscale": true,
+    "status": "done"
+  },
+  "title": "KAFKA isr_expands"
+}, {
+  "definition": {
+    "requests": [
+      {
+        "q": "avg:kafka.request.update_metadata.time.99percentile{*}",
+        "type": "line",
+        "style": {
+          "palette": "dog_classic",
+          "type": "solid",
+          "width": "normal"
+        },
+        "conditional_formats": []
+      }
+    ],
+    "status": "done",
+    "viz": "timeseries",
+    "autoscale": true
+  },
+  "title": "KAFKA update metadata time"
+}, {
+  "definition": {
+    "requests": [
+      {
+        "q": "avg:kafka.replication.under_replicated_partitions{*}",
+        "type": "line",
+        "style": {
+          "palette": "dog_classic",
+          "type": "solid",
+          "width": "normal"
+        },
+        "conditional_formats": []
+      }
+    ],
+    "status": "done",
+    "viz": "timeseries",
+    "autoscale": true
+  },
+  "title": "KAFKA replication under partition"
+}, {
+  "definition": {
+    "requests": [
+      {
+        "q": "avg:kafka.net.bytes_in{*}",
+        "type": "line",
+        "style": {
+          "palette": "dog_classic",
+          "type": "solid",
+          "width": "normal"
+        },
+        "conditional_formats": []
+      }
+    ],
+    "status": "done",
+    "viz": "timeseries",
+    "autoscale": true
+  },
+  "title": "KAFKA net.bytes_in"
+}, {
+  "definition": {
+    "requests": [
+      {
+        "q": "avg:kafka.net.bytes_out{*}",
+        "type": "line",
+        "style": {
+          "palette": "dog_classic",
+          "type": "solid",
+          "width": "normal"
+        },
+        "conditional_formats": []
+      }
+    ],
+    "status": "done",
+    "viz": "timeseries",
+    "autoscale": true
+  },
+  "title": "KAFKA net.bytes_out"
+}, {
+  "definition": {
+    "requests": [
+      {
+        "q": "avg:kafka.consumer.lag_seconds{$scope}",
+        "type": "line",
+        "style": {
+          "palette": "dog_classic",
+          "type": "solid",
+          "width": "normal"
+        },
+        "conditional_formats": []
+      }
+    ],
+    "status": "done",
+    "viz": "timeseries",
+    "autoscale": true
+  },
+  "title": "KAFKA lag time (seconds)"
+}, {
+  "definition": {
+    "requests": [
+      {
+        "q": "avg:kafka.consumer.lag{*}",
+        "type": "line",
+        "style": {
+          "palette": "dog_classic",
+          "type": "solid",
+          "width": "normal"
+        },
+        "conditional_formats": []
+      }
+    ],
+    "status": "done",
+    "viz": "timeseries",
+    "autoscale": true
+  },
+  "title": "KAFKA consumer.lag"
+}, {
+  "definition": {
+    "requests": [
+      {
+        "q": "avg:kafka.consumer.offset{*}",
+        "type": "line",
+        "style": {
+          "palette": "dog_classic",
+          "type": "solid",
+          "width": "normal"
+        },
+        "conditional_formats": []
+      }
+    ],
+    "status": "done",
+    "viz": "timeseries",
+    "autoscale": true
+  },
+  "title": "KAFKA consumer.offset"
+}]

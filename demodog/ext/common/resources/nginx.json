@@ -1,0 +1,71 @@
+[{
+  "definition": {
+    "viz": "timeseries",
+    "status": "done",
+    "requests": [{
+      "q": "anomalies(avg:dd.synth.test.regspike.a{*}, 'basic', 4)",
+      "aggregator": "avg",
+      "style": {
+        "width": "normal",
+        "palette": "purple",
+        "type": "solid"
+      },
+      "type": "line",
+      "conditional_formats": []
+    }],
+    "autoscale": true,
+    "events": [{
+      "q": "ansible ",
+      "tags_execution": "and"
+    }]
+  },
+  "title": "nginx 5xx anomalies + Ansible deployments"
+}, {
+  "definition": {
+    "viz": "timeseries",
+    "status": "done",
+    "requests": [{
+      "q": "outliers(avg:haproxy.backend.response.5xx{*} by {host}, 'DBSCAN', 3.5)",
+      "aggregator": "avg",
+      "style": {
+        "palette": "purple"
+      },
+      "type": "line",
+      "conditional_formats": []
+    }],
+    "autoscale": true
+  },
+  "title": "nginx 5xx Outliers"
+}, {
+  "definition": {
+    "viz": "timeseries",
+    "status": "done",
+    "requests": [{
+      "q": "outliers(avg:haproxy.backend.response.4xx{*} by {host}, 'DBSCAN', 3)",
+      "aggregator": "avg",
+      "style": {
+        "palette": "orange"
+      },
+      "type": "line",
+      "conditional_formats": []
+    }],
+    "autoscale": true
+  },
+  "title": "nginx 4xx Outliers"
+}, {
+  "definition": {
+    "viz": "timeseries",
+    "status": "done",
+    "requests": [{
+      "q": "anomalies(avg:dd.synth.test.sawtooth{*}, 'adaptive', 3)",
+      "aggregator": "avg",
+      "style": {
+        "palette": "purple"
+      },
+      "type": "line",
+      "conditional_formats": []
+    }],
+    "autoscale": true
+  },
+  "title": "nginx 4xx anomalies"
+}]

@@ -1,0 +1,21 @@
+{
+  "title": "%%TITLE%%",
+  "description": "This is a test dashboard generated for %%COMPANY%%.",
+  "graphs": [],
+  "dash": {
+    "read_only": false,
+    "template_variables": [{
+      "default": "*",
+      "prefix": "role",
+      "name": "Role"
+    }, {
+      "default": "*",
+      "prefix": "env",
+      "name": "env"
+    }, {
+      "default": "*",
+      "prefix": "availability-zone",
+      "name": "az"
+    }]
+  }
+}
